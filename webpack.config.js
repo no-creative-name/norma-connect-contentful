@@ -6,7 +6,7 @@ module.exports = {
     output: {
         filename: 'dist/index.js',
         path: __dirname,
-        library: 'norma',
+        library: 'norma-connect-contentful',
         libraryTarget: 'umd',
     },
     module: {
@@ -23,7 +23,7 @@ module.exports = {
     },
     plugins: [
         new DtsBundleWebpack({
-            name: 'norma',
+            name: 'norma-connect-contentful',
             main: 'dist/main.d.ts',
             out: 'index.d.ts',
             removeSource: true
