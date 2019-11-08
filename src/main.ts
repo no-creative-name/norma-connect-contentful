@@ -16,8 +16,7 @@ export class ContentfulAdapter implements ICmsAdapter {
 
     public async getNormalizedContentData(contentId: string, locale: string): Promise<IContent> {
         const contentTypeInfos = await this.client.getContentTypes();
-        console.log(contentTypeInfos);
-        
+
         return this.fetchContentData(contentId, locale)
             .then((rawContentData) => {
                 return normalizeContentfulData(rawContentData, contentTypeInfos);
