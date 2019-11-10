@@ -35,5 +35,4 @@ export class ContentfulAdapter implements ICmsAdapter {
             throw new Error(`${this.constructor.name} could not fetch data for contentId ${contentId}. ${e.message}`);
         });
     }
-    
 }
