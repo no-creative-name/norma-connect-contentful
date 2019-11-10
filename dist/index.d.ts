@@ -5,6 +5,7 @@ declare module 'norma-connect-contentful' {
     import { IContent } from "norma-connect-contentful/interfaces/content";
     import { IContentfulConfig } from "norma-connect-contentful/interfaces/contentful-config";
     export class ContentfulAdapter implements ICmsAdapter {
+        supportsFieldWiseAdjustment: boolean;
         constructor(config: IContentfulConfig);
         getNormalizedContentData(contentId: string, locale: string): Promise<IContent>;
     }
@@ -13,6 +14,7 @@ declare module 'norma-connect-contentful' {
 declare module 'norma-connect-contentful/interfaces/cms-adapter' {
     import { IContent } from "norma-connect-contentful/interfaces/content";
     export interface ICmsAdapter {
+        supportsFieldWiseAdjustment: boolean;
         getNormalizedContentData: (contentId: string, locale: string) => Promise<IContent>;
     }
 }
