@@ -4,6 +4,9 @@ export interface IContent {
     id: string;
   }
 
-interface IContentData {
-    [key: string]: any;
+export interface IContentData {
+    [key: string]: {
+      value: any;
+      fieldType: string;
+    };
 }

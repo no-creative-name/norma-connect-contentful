@@ -2,24 +2,20 @@
 
 declare module 'norma-connect-contentful' {
     import { ICmsAdapter } from "norma-connect-contentful/interfaces/cms-adapter";
+    import { IContent } from "norma-connect-contentful/interfaces/content";
     import { IContentfulConfig } from "norma-connect-contentful/interfaces/contentful-config";
     export class ContentfulAdapter implements ICmsAdapter {
+        supportsFieldWiseAdjustment: boolean;
         constructor(config: IContentfulConfig);
-        getNormalizedContentData(contentId: string, locale: string): Promise<import("./interfaces/content").IContent>;
+        getNormalizedContentData(contentId: string, locale: string): Promise<IContent>;
     }
 }
 
 declare module 'norma-connect-contentful/interfaces/cms-adapter' {
     import { IContent } from "norma-connect-contentful/interfaces/content";
     export interface ICmsAdapter {
+        supportsFieldWiseAdjustment: boolean;
         getNormalizedContentData: (contentId: string, locale: string) => Promise<IContent>;
-    }
-}
-
-declare module 'norma-connect-contentful/interfaces/contentful-config' {
-    export interface IContentfulConfig {
-        space: string;
-        accessToken: string;
     }
 }
 
@@ -29,9 +25,18 @@ declare module 'norma-connect-contentful/interfaces/content' {
         data: IContentData;
         id: string;
     }
-    interface IContentData {
-        [key: string]: any;
+    export interface IContentData {
+        [key: string]: {
+            value: any;
+            fieldType: string;
+        };
     }
-    export {};
+}
+
+declare module 'norma-connect-contentful/interfaces/contentful-config' {
+    export interface IContentfulConfig {
+        space: string;
+        accessToken: string;
+    }
 }
 

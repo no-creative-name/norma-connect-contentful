@@ -1,9 +1,11 @@
 import * as contentful from "contentful";
 import { normalizeContentfulData } from "./helpers/normalize-contentful-data";
 import { ICmsAdapter } from "./interfaces/cms-adapter";
+import { IContent } from "./interfaces/content";
 import { IContentfulConfig } from "./interfaces/contentful-config";
 
 export class ContentfulAdapter implements ICmsAdapter {
+    public supportsFieldWiseAdjustment = true;
     private client: contentful.ContentfulClientApi;
 
     constructor(config: IContentfulConfig) {
@@ -13,16 +15,18 @@ export class ContentfulAdapter implements ICmsAdapter {
         this.createContentfulClient(config);
     }
 
-    public async getNormalizedContentData(contentId: string, locale: string) {
+    public async getNormalizedContentData(contentId: string, locale: string): Promise<IContent> {
+        const contentTypeInfos = await this.client.getContentTypes();
+
         return this.fetchContentData(contentId, locale)
             .then((rawContentData) => {
-                return normalizeContentfulData(rawContentData);
+                return normalizeContentfulData(rawContentData, contentTypeInfos);
             }).catch((e: Error) => {
                 throw e;
             });
     }
 
-    private createContentfulClient(config: IContentfulConfig) {
+    private createContentfulClient(config: IContentfulConfig): void {
         this.client = contentful.createClient({ ...config });
     }
 
