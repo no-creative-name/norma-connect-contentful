@@ -50,11 +50,11 @@ export const normalizeContentfulData = (
             };
         } else {
             if (contentField.fields && contentField.sys) {
-                normalizedContent.data[fieldIdentifier] =
-                    alreadyNormalizedContents[contentField.sys.id] ||
-                    {
+                normalizedContent.data[fieldIdentifier] = {
                         fieldType,
-                        value: normalizeContentfulData(contentField, contentTypeInfos, alreadyNormalizedContents),
+                        value:
+                            alreadyNormalizedContents[contentField.sys.id] ||
+                            normalizeContentfulData(contentField, contentTypeInfos, alreadyNormalizedContents),
                     };
             } else {
                 normalizedContent.data[fieldIdentifier] = {
