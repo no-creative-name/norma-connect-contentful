@@ -20,6 +20,10 @@ const contentTypeInfos = {
                 {
                     id: 'subContentB',
                     type: 'referenceArray'
+                },
+                {
+                    id: 'subContentC',
+                    type: 'array'
                 }
             ],
             sys: {
@@ -106,6 +110,9 @@ const expectedInput = {
                 },
             },
         ],
+        subContentC: [
+            1, 2, 3
+        ],
     },
     sys: {
         contentType: {
@@ -171,6 +178,12 @@ const expectedOutput = {
                     },
                     type: "contentTypeC",
                 },
+            ]
+        },
+        subContentC: {
+            fieldType: "array",
+            value: [
+                1, 2, 3
             ]
         }
     },
