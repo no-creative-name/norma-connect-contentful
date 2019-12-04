@@ -1,6 +1,6 @@
 import { IContent } from "./content";
 
 export interface ICmsAdapter {
-    supportsFieldTypeWiseAdjustments: boolean;
+    supportsFieldTypeWiseAdjustment: boolean;
     getNormalizedContentData: (contentId: string, locale: string) => Promise<IContent>;
 }
