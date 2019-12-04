@@ -87,11 +87,7 @@ const expectedInput = {
                     fieldB: 0,
                 },
                 sys: {
-                    contentType: {
-                        sys: {
-                            id: "contentTypeC",
-                        },
-                    },
+                    type: "Asset",
                     id: "2",
                 },
             },
@@ -155,15 +151,15 @@ const expectedOutput = {
                 {
                     data: {
                         fieldA: {
-                            fieldType: "string",
+                            fieldType: "unknown",
                             value: ""
                         },
                         fieldB: {
-                            fieldType: "number",
+                            fieldType: "unknown",
                             value: 0
                         },
                     },
-                    type: "contentTypeC",
+                    type: "Asset",
                 },
                 {
                     data: {
