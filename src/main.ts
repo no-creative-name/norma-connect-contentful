@@ -5,7 +5,7 @@ import { IContent } from "./interfaces/content";
 import { IContentfulConfig } from "./interfaces/contentful-config";
 
 export class ContentfulAdapter implements ICmsAdapter {
-    public supportsFieldWiseAdjustments = true;
+    public supportsFieldTypeWiseAdjustment = true;
     private client: contentful.ContentfulClientApi;
 
     constructor(config: IContentfulConfig) {

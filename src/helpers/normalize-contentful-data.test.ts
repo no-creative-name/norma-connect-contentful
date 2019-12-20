@@ -20,6 +20,10 @@ const contentTypeInfos = {
                 {
                     id: 'subContentB',
                     type: 'referenceArray'
+                },
+                {
+                    id: 'subContentC',
+                    type: 'array'
                 }
             ],
             sys: {
@@ -83,11 +87,7 @@ const expectedInput = {
                     fieldB: 0,
                 },
                 sys: {
-                    contentType: {
-                        sys: {
-                            id: "contentTypeC",
-                        },
-                    },
+                    type: "Asset",
                     id: "2",
                 },
             },
@@ -105,6 +105,9 @@ const expectedInput = {
                     id: "3",
                 },
             },
+        ],
+        subContentC: [
+            1, 2, 3
         ],
     },
     sys: {
@@ -148,15 +151,15 @@ const expectedOutput = {
                 {
                     data: {
                         fieldA: {
-                            fieldType: "string",
+                            fieldType: "unknown",
                             value: ""
                         },
                         fieldB: {
-                            fieldType: "number",
+                            fieldType: "unknown",
                             value: 0
                         },
                     },
-                    type: "contentTypeC",
+                    type: "Asset",
                 },
                 {
                     data: {
@@ -171,6 +174,12 @@ const expectedOutput = {
                     },
                     type: "contentTypeC",
                 },
+            ]
+        },
+        subContentC: {
+            fieldType: "array",
+            value: [
+                1, 2, 3
             ]
         }
     },
